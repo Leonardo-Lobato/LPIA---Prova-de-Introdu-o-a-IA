@@ -1,0 +1,35 @@
+quantidade_alunos = int(input("Digite o número de alunos: "))
+
+lista_turma = [] 
+total_medias = 0 
+
+for indice_aluno in range(quantidade_alunos):
+    print(f"\nAluno {indice_aluno + 1}:")
+    nome_aluno = input("Digite o nome do aluno: ")
+    lista_notas = []
+    for indice_nota in range(3):
+        nota_individual = float(input(f"Digite a nota {indice_nota + 1}: "))
+        lista_notas.append(nota_individual)
+    
+    media_aluno = sum(lista_notas) / len(lista_notas)
+    total_medias += media_aluno
+    
+    situacao_aluno = "Aprovado" if media_aluno >= 7.0 else "Reprovado"
+    
+    lista_turma.append({
+        "nome": nome_aluno,
+        "notas": lista_notas,
+        "media": media_aluno,
+        "status": situacao_aluno
+    })
+
+print("\nResultados dos alunos:")
+for registro_aluno in lista_turma:
+    print(f"Nome: {registro_aluno['nome']}")
+    print(f"Notas: {', '.join(map(str, registro_aluno['notas']))}")
+    print(f"Média: {registro_aluno['media']:.2f}")
+    print(f"Status: {registro_aluno['status']}")
+    print("-" * 20)
+
+media_turma = total_medias / quantidade_alunos
+print(f"\nMédia geral da turma: {media_turma:.2f}")
